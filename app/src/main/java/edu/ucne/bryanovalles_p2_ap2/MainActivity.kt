@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import edu.ucne.bryanovalles_p2_ap2.presentation.navegation.ParcialNavHost
 import edu.ucne.bryanovalles_p2_ap2.ui.theme.BryanOvalles_P2_AP2Theme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +21,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BryanOvalles_P2_AP2Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val navHost = rememberNavController()
+                ParcialNavHost(navHost)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BryanOvalles_P2_AP2Theme {
-        Greeting("Android")
     }
 }
