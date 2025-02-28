@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import edu.ucne.bryanovalles_p2_ap2.data.local.database.DataBase
+import edu.ucne.bryanovalles_p2_ap2.data.local.remote.DepositoApi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -30,7 +31,7 @@ object AppModule {
     @Provides
     fun provideDao(parcialDb: DataBase) = parcialDb.depositoDao()
 
-    const val BASE_URL = ""
+    const val BASE_URL = "https://sagapi-dev.azurewebsites.net/"
 
     @Provides
     @Singleton
@@ -39,13 +40,13 @@ object AppModule {
             .add(KotlinJsonAdapterFactory())
             .build()
 
-//    @Provides
-//    @Singleton
-//    fun provideApi(moshi: Moshi): EntidadApi {
-//        return Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(MoshiConverterFactory.create(moshi))
-//            .build()
-//            .create(EntidadApi::class.java)
-//    }
+    @Provides
+    @Singleton
+    fun provideApi(moshi: Moshi): DepositoApi {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .build()
+            .create(DepositoApi::class.java)
+    }
 }
