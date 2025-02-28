@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DepositoDao {
     @Upsert()
-    suspend fun save(depositoEntity: DepositoEntity)
+    suspend fun save(depositoEntity: List<DepositoEntity>)
 
     @Query(
         """

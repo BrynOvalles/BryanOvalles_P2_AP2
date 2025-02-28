@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 @Entity (tableName = "Deposito")
 data class DepositoEntity (
     @PrimaryKey
-    val idDeposito: Int? = null,
-    val fecha: String = "",
-    val idCuenta: Int? = null,
-    val concepto: String = "",
-    val monto: Int? = null,
+    val idDeposito: Int?,
+    val fecha: String,
+    val idCuenta: Int,
+    val concepto: String,
+    val monto: Double
 )
