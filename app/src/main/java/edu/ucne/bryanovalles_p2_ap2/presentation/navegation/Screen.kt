@@ -6,5 +6,5 @@ sealed class Screen {
     @Serializable
     data object PantallaInicio : Screen()
     @Serializable
-    data class Deposito(val sistemaId: Int) : Screen()
+    data class Deposito(val depositoId: Int) : Screen()
 }
