@@ -64,7 +64,8 @@ class DepositoViewModel @Inject constructor(
 
     fun find(depositoId: Int) {
         viewModelScope.launch {
-            if (depositoId > 0) {
+            val deposito = depositoRepository.find(depositoId)
+            if (deposito != null) {
                 val depositoDto = depositoRepository.find(depositoId)
                 if (depositoDto != null) {
                     if (depositoDto.idDeposito != 0) {
