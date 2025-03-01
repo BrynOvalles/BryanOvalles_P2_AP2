@@ -16,18 +16,14 @@ interface DepositoApi {
     suspend fun getDepositos(): List<DepositoDto>
 
     @Headers("X-API-Key:test")
-    @GET("api/Depositos/{id}")
-    suspend fun getDeposito(@Path("id") id: Int): DepositoDto
-
-    @Headers("X-API-Key:test")
     @POST("api/Depositos")
-    suspend fun saveDeposito(@Body entidadDto: DepositoDto?): Response<DepositoDto>
+    suspend fun saveDeposito(@Body depositoDto: DepositoDto?): DepositoDto
 
     @Headers("X-API-Key:test")
     @PUT("api/Depositos/{id}")
     suspend fun updateDeposito(
         @Path("id") id: Int,
-        @Body entidad: DepositoDto
+        @Body deposito: DepositoDto
     ): Response<DepositoDto>
 
     @Headers("X-API-Key:test")
