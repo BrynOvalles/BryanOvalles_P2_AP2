@@ -1,5 +1,6 @@
 package edu.ucne.bryanovalles_p2_ap2.data.repository
 
+import android.util.Log
 import edu.ucne.bryanovalles_p2_ap2.data.local.dao.DepositoDao
 import edu.ucne.bryanovalles_p2_ap2.data.local.entity.DepositoEntity
 import edu.ucne.bryanovalles_p2_ap2.data.local.remote.RemoteDataSource
@@ -44,8 +45,21 @@ class DepositoRepository @Inject constructor(
         }
     }
 
+    suspend fun find(id: Int): DepositoEntity? {
+        val depositosDto = remoteDataSource.getDepositos()
+        return depositosDto
+            .firstOrNull { it.idDeposito == id }
+            ?.let { depositoDto ->
+                DepositoEntity(
+                    idDeposito = depositoDto.idDeposito,
+                    fecha = depositoDto.fecha,
+                    idCuenta = depositoDto.idCuenta,
+                    concepto = depositoDto.concepto,
+                    monto = depositoDto.monto
+                )
+            }
+    }
     suspend fun update(id: Int, depositoDto: DepositoDto) = remoteDataSource.updateDeposito(id, depositoDto)
-    suspend fun find(id: Int) = remoteDataSource.getDeposito(id)
     suspend fun save(depositoDto: DepositoDto) = remoteDataSource.saveDeposito(depositoDto)
     suspend fun delete(id: Int) = remoteDataSource.deleteDeposito(id)
 }
